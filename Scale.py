@@ -1,21 +1,21 @@
 import numpy as np
 import pandas as pd
-dataset = pd.read_csv ("C:/Users/J54JWG3/Documents/Github/CSCE5215-Handwriting-Recognition/Datasets/Handwritten Characters2/emnist-letters-test.csv", header = None)
+train= pd.read_csv ("C:/Users/J54JWG3/Documents/Github/CSCE5215-Handwriting-Recognition/Datasets/Handwritten Characters2/emnist-letters-train.csv", header = None)
+test= pd.read_csv ("C:/Users/J54JWG3/Documents/Github/CSCE5215-Handwriting-Recognition/Datasets/Handwritten Characters2/emnist-letters-test.csv", header = None)
 
-targets = dataset.drop(dataset.columns[1:], axis=1)
-images = dataset.drop(dataset.columns[0], axis=1)
+Y_train = train.drop(train.columns[1:], axis=1)
+X_train = train.drop(train.columns[0], axis=1).to_numpy()
 
-print(targets.shape)
+length = len(X_train)
+X_train = X_train.reshape((length, 28,28))
 
-print(images.shape)
-array = images.to_numpy()
-length = len(array)
-array = array.reshape((length, 28,28))
+Y_test = test.drop(test.columns[1:], axis=1)
+X_test = test.drop(test.columns[0], axis=1).to_numpy()
 
-print(array.shape)
+length = len(X_test)
+X_test = X_test.reshape((length, 28,28))
 
-from sklearn.model_selection import train_test_split
-X_train, X_test, Y_train, Y_test = train_test_split(array, targets, test_size = 0.2, random_state = 0)
+
 
 ###Code below this point was taken from https://www.geeksforgeeks.org/convolutional-neural-network-cnn-in-tensorflow/
 from tensorflow.keras.utils import to_categorical
@@ -33,8 +33,8 @@ X_train = X_train.reshape(X_train.shape[0], X_train.shape[1], X_train.shape[2], 
 X_test = X_test.reshape(X_test.shape[0], X_test.shape[1], X_test.shape[2], 1)
     
 # One-hot encoding label 
-Y_train = to_categorical(Y_train)
-Y_test = to_categorical(Y_test)
+Y_train = to_categorical(Y_train, num_classes = 27)
+Y_test = to_categorical(Y_test, num_classes = 27)
 
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Conv2D, MaxPooling2D, Dense, Flatten
@@ -66,7 +66,7 @@ model.add(Dense(units=84, activation='relu'))
   
 #Layer 5
 #Output Layer
-model.add(Dense(units=20, activation='softmax'))
+model.add(Dense(units=27, activation='softmax'))
   
 model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
 
