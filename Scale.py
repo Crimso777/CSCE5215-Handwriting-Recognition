@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
-train= pd.read_csv ("C:/Users/J54JWG3/Documents/Github/CSCE5215-Handwriting-Recognition/Datasets/Handwritten Characters2/emnist-letters-train.csv", header = None)
-test= pd.read_csv ("C:/Users/J54JWG3/Documents/Github/CSCE5215-Handwriting-Recognition/Datasets/Handwritten Characters2/emnist-letters-test.csv", header = None)
+train= pd.read_csv ("Datasets/Handwritten Characters2/emnist-letters-train.csv", header = None)
+test= pd.read_csv ("Datasets/Handwritten Characters2/emnist-letters-test.csv", header = None)
 
 Y_train = train.drop(train.columns[1:], axis=1)
 X_train = train.drop(train.columns[0], axis=1).to_numpy()

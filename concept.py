@@ -1,6 +1,6 @@
 import numpy as np
 import pandas as pd
-dataset = pd.read_csv ("C:/Users/J54JWG3/Documents/Github/CSCE5215-Handwriting-Recognition/Datasets/Handwritten Characters2/emnist-letters-test.csv", header = None)
+dataset = pd.read_csv ("Datasets/Handwritten Characters2/emnist-letters-test.csv", header = None)
 
 targets = dataset.drop(dataset.columns[1:], axis=1)
 images = dataset.drop(dataset.columns[0], axis=1)
