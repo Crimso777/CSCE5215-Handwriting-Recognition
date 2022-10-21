@@ -79,7 +79,7 @@ history = model.fit(X_train, Y_train, epochs=epochs, batch_size=batch_size,
   
 _, acc = model.evaluate(X_test, Y_test, verbose = 1)
 print('%.3f' % (acc * 100.0))
-import matplotlib as plt  
+import matplotlib.pyplot as plt  
 plt.figure(figsize=(10,6))
 plt.plot(history.history['accuracy'], color = 'blue', label = 'train')
 plt.plot(history.history['val_accuracy'], color = 'red', label = 'val')
