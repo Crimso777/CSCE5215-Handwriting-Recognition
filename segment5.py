@@ -177,8 +177,9 @@ for path in images:
 #   image_number = len(candidates)
    image_number = len(crop_characters)
    if len(crop_characters) == len(word):
-#      cv2.imshow('image',crop_characters[0])
-#      cv2.waitKey(0)
+      cv2.imshow('image', cv2.resize(crop_characters[0] , dsize=(100, 100)))
+      cv2.waitKey(0)
+      cv2.destroyAllWindows()
       segments.append([np.array(crop_characters), word])
       i = i + 1
 
